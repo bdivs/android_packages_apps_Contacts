@@ -19,6 +19,7 @@ package com.android.contacts.activities;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -212,10 +213,9 @@ public final class ShowOrCreateActivity extends ContactsActivity
 
                 final CharSequence message = getResources().getString(
                         R.string.add_contact_dlg_message_fmt, mCreateDescrip);
-
-                return new AlertDialog.Builder(this, getResources().getConfiguration().uiThemeMode
-                                == Configuration.UI_THEME_MODE_HOLO_DARK
-                                ? AlertDialog.THEME_HOLO_DARK : AlertDialog.THEME_HOLO_LIGHT)
+                return new AlertDialog.Builder(this, getResources().getConfiguration().uiInvertedMode
+                                 == Configuration.UI_INVERTED_MODE_YES
+                                 ? AlertDialog.THEME_HOLO_DARK : AlertDialog.THEME_HOLO_LIGHT)
                         .setMessage(message)
                         .setPositiveButton(android.R.string.ok,
                                 new IntentClickListener(this, createIntent))
